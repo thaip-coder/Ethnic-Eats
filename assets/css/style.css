@@ -1,0 +1,21 @@
+.nav-wrapper {
+    padding-left: 20px;
+  }
+
+  #search-results{
+    height:30vh;
+    padding-left: 20px;
+  }
+
+  #selected-recipe{
+    height:50vh;
+    padding-left: 20px;
+  }
+
+  #navbar{
+    height:8vh;
+  }
+
+  #footer{
+    height:12vh;
+  }
