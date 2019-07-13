@@ -54,9 +54,28 @@ M.AutoInit();
   $(document).ready(function(){
     $('input.autocomplete').autocomplete({
       data: {
-        "Apple": null,
-        "Microsoft": null,
-        "Google": 'https://placehold.it/250x250'
+        "American": null,
+        "Mexican": null,
+        "Chinese": null,
+        "Vietnamese": null,
+        "Greek": null,
+        "French":null,
+        "Spanish":null,
+        "Lebanese":null,
+        "Peruvian":null,
+        "German":null,
+        "Portuguese":null,
+        "Cajun":null,
+        "Korean":null,
+        "Venezuelan":null,
+        "Indian":null,
+        "Agentinian":null,
+        "Thai":null,
+        "Japanese":null,
+        "Italian":null,
+        "Zambian":null,
+        "Turkish":null,
+
       },
     });
   });
