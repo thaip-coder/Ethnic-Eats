@@ -24,7 +24,7 @@ $(document).ready(function(){
     if($("#login-form").hasClass("inactive")){
       $("#login-form").show();
       $("#login-form").addClass("active");
-      $("#login-form").removeClass("inactive")
+      $("#login-form").removeClass("inactive");
       $("#search-inputs").hide();
     } else if ($("#login-form").hasClass("active")) {
       $("#login-form").hide();
@@ -37,7 +37,7 @@ $(document).ready(function(){
     if($("#search-inputs").hasClass("inactive")){
       $("#search-inputs").show();
       $("#search-inputs").addClass("active");
-      $("#search-inputs").removeClass("inactive")
+      $("#search-inputs").removeClass("inactive");
       $("#login-form").hide();
     } else if ($("#search-inputs").hasClass("active")) {
       $("#search-inputs").hide();
