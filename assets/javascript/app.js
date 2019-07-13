@@ -27,6 +27,8 @@ $(document).ready(function(){
       $("#login-form").addClass("active");
       $("#login-form").removeClass("inactive");
       $("#search-inputs").hide();
+      $("#search-inputs").removeClass("active");
+      $("#search-inputs").addClass("inactive");
     } else if ($("#login-form").hasClass("active")) {
       $("#login-form").hide();
       $("#login-form").removeClass("active");
@@ -40,6 +42,8 @@ $(document).ready(function(){
       $("#search-inputs").addClass("active");
       $("#search-inputs").removeClass("inactive");
       $("#login-form").hide();
+      $("#login-form").removeClass("active");
+      $("#login-form").addClass("inactive");
     } else if ($("#search-inputs").hasClass("active")) {
       $("#search-inputs").hide();
       $("#search-inputs").removeClass("active");
