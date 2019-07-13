@@ -20,10 +20,7 @@
 M.AutoInit();
         
 
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, options);
-  });
+
 
 
   $(document).ready(function(){
@@ -31,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   $("#login-form").hide();
+  $("#search-inputs").hide();
   
   $("#login-link").on("click", function(){
     $("#login-form").show();
@@ -47,4 +45,39 @@ document.addEventListener('DOMContentLoaded', function() {
   $("#btn-logout").on("click", function(){
     $("#login-form").hide();
   });
+
+  $("#nav-search").on("click", function(){
+      $("#search-inputs").show();
+
+  });
+
+  $(document).ready(function(){
+    $('input.autocomplete').autocomplete({
+      data: {
+        "American": null,
+        "Mexican": null,
+        "Chinese": null,
+        "Vietnamese": null,
+        "Greek": null,
+        "French":null,
+        "Spanish":null,
+        "Lebanese":null,
+        "Peruvian":null,
+        "German":null,
+        "Portuguese":null,
+        "Cajun":null,
+        "Korean":null,
+        "Venezuelan":null,
+        "Indian":null,
+        "Agentinian":null,
+        "Thai":null,
+        "Japanese":null,
+        "Italian":null,
+        "Zambian":null,
+        "Turkish":null,
+
+      },
+    });
+  });
+     
 

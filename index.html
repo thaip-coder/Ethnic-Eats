@@ -8,14 +8,14 @@
   <!-- Compiled and minified CSS for materialize library/framework -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-  <!-- Compiled and minified JavaScript for materialize library/framework-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   <!-- Google Icon Library-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+  <!-- Compiled and minified JavaScript for materialize library/framework-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body>
@@ -25,15 +25,28 @@
       <a href="#" class="brand-logo">Ethnic Eats</a>
       <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Search Recipes</a></li>
+        
         <li><a id="login-link" href="#">Login</a></li>
-        <li><a href="#">Favorites</a></li>
+        <li><a id="nav-search" href="#">Search Recipes</a></li>
 
+        <li><a href="#">Favorites</a></li>
       </ul>
     </div>
   </nav>
 
-  <div  id="login-form" class="container">
+  <div id="search-inputs" class="row">
+      <div class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">textsms</i>
+            <input type="text" id="autocomplete-input" class="autocomplete">
+            <label for="autocomplete-input">Autocomplete</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div  id="login-form" class="container" style="margin-bottom:20px;">
       <input type="email" id="email-input" placeholder="Email@email.com">
       <input type="password" id="password-input" placeholder="Password">
       <button id="btn-login" class="btn waves-effect waves-light" type="submit" name="action">Login</button>
@@ -54,34 +67,13 @@
         <a href="#email"><span class="black-text email">jdandturk@gmail.com</span></a>
       </div>
     </li>
-    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-    <li><a href="#!">Login</a></li>
+    <li><a id="side-nav-login" href="#">Login</a></li>
+    <li><a id="side-nav-search" href="#">Search Recipes</a></li>
     <li>
       <div class="divider"></div>
     </li>
-    <li><a class="subheader">Search Recipes</a></li>
-    <li><a class="waves-effect" href="#!">Favorites</a></li>
+    <li><a id="side-nav-favorites" href="#!"><i class="material-icons">star_border</i>Favorites</a></li>
   </ul>
-
-
-  <!-- <nav>
-        <div id="navbar" class="nav-wrapper deep-orange accent-3">
-          <a href="#" class="brand-logo">Ethnic Eats</a>
-          <a href="#" data-target="mobile-links" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="sass.html">Login</a></li>
-            <li><a href="badges.html">Search Recipes</a></li>
-            <li><a href="collapsible.html">Favorites</a></li>
-            
-          </ul>
-        </div>
-      </nav>
-    
-      <ul class="sidenav" id="mobile-links">
-        <li><a href="sass.html">Login</a></li>
-        <li><a href="badges.html">Search Recipes</a></li>
-        <li><a href="collapsible.html">Favorites</a></li>
-      </ul>-->
 
   <div class="parallax-container">
     <div class="parallax"><img src="./assets/images/food.jpeg"></div>
