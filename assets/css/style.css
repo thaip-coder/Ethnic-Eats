@@ -19,3 +19,7 @@
   #footer{
     height:12vh;
   }
+
+  ::placeholder{
+    color: white;
+  }
