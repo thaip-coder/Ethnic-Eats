@@ -31,9 +31,17 @@ M.AutoInit();
   $("#search-inputs").hide();
   
   $("#login-link").on("click", function(){
-    $("#login-form").show();
+    if($("#login-form").hasClass("inactive")){
+      $("#login-form").show();
+      $("#login-form").addClass("active");
+      $("#login-form").removeClass("inactive")
+    } else if ($("#login-form").hasClass("active")) {
+      $("#login-form").hide();
+      $("#login-form").removeClass("active");
+      $("#login-form").addClass("inactive");
+    };
   });
-
+  
   $("#btn-login").on("click", function(){
       $("#login-form").hide();
   });
@@ -47,8 +55,15 @@ M.AutoInit();
   });
 
   $("#nav-search").on("click", function(){
+    if($("#search-inputs").hasClass("inactive")){
       $("#search-inputs").show();
-
+      $("#search-inputs").addClass("active");
+      $("#search-inputs").removeClass("inactive")
+    } else if ($("#search-inputs").hasClass("active")) {
+      $("#search-inputs").hide();
+      $("#search-inputs").removeClass("active");
+      $("#search-inputs").addClass("inactive");
+    };
   });
 
   $(document).ready(function(){
