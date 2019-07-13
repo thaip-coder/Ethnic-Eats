@@ -11,6 +11,7 @@
 // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+
 M.AutoInit();
         
 $(document).ready(function(){
@@ -48,10 +49,30 @@ $(document).ready(function(){
   
   $("#btn-login").on("click", function(){
       $("#login-form").hide();
+      var email = $("#email-input").val().trim();
+      var pass = $("#password-input").val().trim();
+      var auth = firebase.auth();
+
+      console.log(email);
+      console.log(pass);
+
+      var promise = auth.signInWithEmailAndPassword(email, pass);
+      promise.catch(e=> console.log(e.message));
+      
+
   });
 
   $("#btn-signup").on("click", function(){
     $("#login-form").hide();
+      var email = $("#email-input").val().trim();
+      var pass = $("#password-input").val().trim();
+      var auth = firebase.auth();
+
+      console.log(email);
+      console.log(pass);
+
+      var promise = auth.createUserWithEmailAndPassword(email, pass);
+      promise.catch(e=> console.log(e.message));
   });
 
   $("#btn-logout").on("click", function(){
