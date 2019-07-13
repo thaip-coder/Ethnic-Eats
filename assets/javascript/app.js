@@ -9,7 +9,7 @@
     appId: "1:256978426670:web:37329348150d7a63"
   };
 // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 
 M.AutoInit();
@@ -62,8 +62,6 @@ $(document).ready(function(){
 
       var promise = auth.signInWithEmailAndPassword(email, pass);
       promise.catch(e=> console.log(e.message));
-      
-
   });
 
   $("#btn-signup").on("click", function(){
@@ -107,9 +105,39 @@ $(document).ready(function(){
         "Italian":null,
         "Zambian":null,
         "Turkish":null,
-
       },
     });
   });
+
+  $("#btn-search").on("click", function(){
+    var ethnicity = $("#autocomplete-input").val()
+    var ingredient = $("#ingredient").val();
+    var userQuery = ingredient + "," + ethnicity;
+    var queryURL = "https://api.edamam.com/search?&app_id=ba32723a&app_key=90cd3ee1b4bfd97de855e1d17e377a6b&from=0&to=9&q=" + userQuery;
+    console.log(ethnicity);
+    console.log(ingredient);
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function (response) {
+      for (var i = 0; i < 4; i++) {
+        var foodImage = response.data[i].hits.recipe.image;
+        //var foodURL = response.data[i].hits.recipe.url;
+        var foodDescription = response.data[i].hits.recipe.label;
+        var matCard = $("<div class='card'>")
+        var matBody = $("<div class='card-content'>")
+        var matText = $("<p>")
+        var matImage = $("<div class='card-image'>")
+
+        $(matText).append(foodDescription);
+        $(matBody).append(matText);
+        $(matImage).append(foodImage);
+        $(matCard).append(matImage);
+        $(matCard).append(matBody);
+        $("#recipe-cards").prepend(matCard);
+      }; 
+    }); 
+  }); 
      
 
