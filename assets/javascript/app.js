@@ -1,8 +1,4 @@
-
-
-
-
-  // Your web app's Firebase configuration
+// Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyBn1WGH0cVXPIH1yZkZePM1aQ6gm5QnzJA",
     authDomain: "ethnic-eats-13032.firebaseapp.com",
@@ -12,19 +8,13 @@
     messagingSenderId: "256978426670",
     appId: "1:256978426670:web:37329348150d7a63"
   };
-  // Initialize Firebase
+// Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
-
 
 M.AutoInit();
         
-
-
-
-
-  $(document).ready(function(){
-    $('.parallax').parallax();
+$(document).ready(function(){
+  $('.parallax').parallax();
   });
 
   $("#login-form").hide();
@@ -35,10 +25,24 @@ M.AutoInit();
       $("#login-form").show();
       $("#login-form").addClass("active");
       $("#login-form").removeClass("inactive")
+      $("#search-inputs").hide();
     } else if ($("#login-form").hasClass("active")) {
       $("#login-form").hide();
       $("#login-form").removeClass("active");
       $("#login-form").addClass("inactive");
+    };
+  });
+
+  $("#nav-search").on("click", function(){
+    if($("#search-inputs").hasClass("inactive")){
+      $("#search-inputs").show();
+      $("#search-inputs").addClass("active");
+      $("#search-inputs").removeClass("inactive")
+      $("#login-form").hide();
+    } else if ($("#search-inputs").hasClass("active")) {
+      $("#search-inputs").hide();
+      $("#search-inputs").removeClass("active");
+      $("#search-inputs").addClass("inactive");
     };
   });
   
@@ -52,18 +56,6 @@ M.AutoInit();
 
   $("#btn-logout").on("click", function(){
     $("#login-form").hide();
-  });
-
-  $("#nav-search").on("click", function(){
-    if($("#search-inputs").hasClass("inactive")){
-      $("#search-inputs").show();
-      $("#search-inputs").addClass("active");
-      $("#search-inputs").removeClass("inactive")
-    } else if ($("#search-inputs").hasClass("active")) {
-      $("#search-inputs").hide();
-      $("#search-inputs").removeClass("active");
-      $("#search-inputs").addClass("inactive");
-    };
   });
 
   $(document).ready(function(){
