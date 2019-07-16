@@ -122,18 +122,19 @@ $(document).ready(function(){
       method: "GET"
     }).then(function (response) {
       for (var i = 0; i < 4; i++) {
-        var foodImage = response.data[i].hits.recipe.image;
-        //var foodURL = response.data[i].hits.recipe.url;
-        var foodDescription = response.data[i].hits.recipe.label;
+        var foodImage = response.hits[i].recipe.image;
+        var foodDescription = response.hits[i].recipe.label;
         var matCard = $("<div class='card'>")
         var matBody = $("<div class='card-content'>")
         var matText = $("<p>")
-        var matImage = $("<div class='card-image'>")
+        var matImageDiv = $("<div class='card-image'>")
+        var matImage = $("<img style=height:150px;>")
 
         $(matText).append(foodDescription);
         $(matBody).append(matText);
         $(matImage).append(foodImage);
-        $(matCard).append(matImage);
+        $(matCard).append(matImageDiv)
+        $(matImageDiv).append(matImage);
         $(matCard).append(matBody);
         $("#recipe-cards").prepend(matCard);
       }; 
