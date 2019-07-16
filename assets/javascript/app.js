@@ -1,4 +1,6 @@
-// Your web app's Firebase configuration
+
+
+// Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyBn1WGH0cVXPIH1yZkZePM1aQ6gm5QnzJA",
     authDomain: "ethnic-eats-13032.firebaseapp.com",
@@ -11,17 +13,30 @@
 // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+  var user = firebase.auth().currentUser;
+  var name, email, photoUrl, uid, emailVerified;
+  var userId;
+  var auth = firebase.auth();
+
+//initialize modals for materialize
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+
 
 M.AutoInit();
-        
+ //parallax scrolling from materialize       
 $(document).ready(function(){
   $('.parallax').parallax();
   });
 
   $("#login-form").hide();
   $("#search-inputs").hide();
-  
-  $("#login-link").on("click", function(){
+  $("#btn-logout").hide();
+  $("#login-message-center").hide();
+
+  //toggle login form
+  $(document.body).on("click","#login-link", function(){
     if($("#login-form").hasClass("inactive")){
       $("#login-form").show();
       $("#login-form").addClass("active");
@@ -33,7 +48,7 @@ $(document).ready(function(){
       $("#login-form").addClass("inactive");
     };
   });
-
+//toggle search form
   $("#nav-search").on("click", function(){
     if($("#search-inputs").hasClass("inactive")){
       $("#search-inputs").show();
@@ -46,27 +61,24 @@ $(document).ready(function(){
       $("#search-inputs").addClass("inactive");
     };
   });
-  
-  $("#btn-login").on("click", function(){
+  //user login
+  $(document.body).on("click","#btn-login", function(){
       $("#login-form").hide();
       var email = $("#email-input").val().trim();
       var pass = $("#password-input").val().trim();
-      var auth = firebase.auth();
-
+      
       console.log(email);
       console.log(pass);
 
       var promise = auth.signInWithEmailAndPassword(email, pass);
       promise.catch(e=> console.log(e.message));
-      
-
   });
-
+//user signUp
   $("#btn-signup").on("click", function(){
     $("#login-form").hide();
       var email = $("#email-input").val().trim();
       var pass = $("#password-input").val().trim();
-      var auth = firebase.auth();
+      
 
       console.log(email);
       console.log(pass);
@@ -74,6 +86,39 @@ $(document).ready(function(){
       var promise = auth.createUserWithEmailAndPassword(email, pass);
       promise.catch(e=> console.log(e.message));
   });
+
+  auth.onAuthStateChanged(firebaseUser => {
+    if (firebaseUser)
+        {
+          $("#displayName-input").hide();
+          console.log(firebaseUser)
+          var logoutLink = $("<a id='logout-link' href='#''>Logout</a>");
+          var email = firebaseUser.email;
+          var userWelcome = $("<a id='userWelcome' href='#'></a>");
+          $(userWelcome).text(email);
+          $("#login-logout").empty();
+          
+          
+         // $("#login-logout").prepend("Welcome " + email);
+          $("#login-logout").prepend(logoutLink);
+          $(document.body).on("click", "#logout-link",  function(){
+            firebase.auth().signOut();
+          });
+
+
+        }
+        else
+        {
+          var loginLink = $("<a id='login-link' href='#''>Login</a>");
+          //$("#btn-logout").show();
+          //$("#btn-login").hide();
+          $("#login-logout").empty();
+          $("#login-logout").html(loginLink);
+          console.log("not logged in")
+        }
+  });
+
+
 
   $("#btn-logout").on("click", function(){
     $("#login-form").hide();
