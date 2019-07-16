@@ -1,5 +1,6 @@
 .nav-wrapper {
-    padding-left: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   #search-results{
@@ -13,13 +14,24 @@
   }
 
   #navbar{
-    height:8vh;
+    height:70px;
   }
 
   #footer{
     height:12vh;
   }
-
-  ::placeholder{
-    color: white;
+  #search-inputs{
+    padding-top: 20px;
+    margin-left: 100px;
+  }
+  #btn-search{
+  margin-top: 20px;
+  margin-left: 20px;
+  }
+  #login-form{
+    width:400px;
+    padding-top: 20px;
+  }
+  #btn-signup{
+    float: right;
   }
