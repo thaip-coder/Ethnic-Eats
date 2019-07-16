@@ -133,8 +133,9 @@ $(document).ready(function(){
         $(matText).append(foodDescription);
         $(matBody).append(matText);
         $(matImage).append(foodImage);
-        $(matCard).append(matImageDiv)
         $(matImageDiv).append(matImage);
+        $(matCard).append(matImageDiv);
+      
         $(matCard).append(matBody);
         $("#recipe-cards").prepend(matCard);
       }; 
