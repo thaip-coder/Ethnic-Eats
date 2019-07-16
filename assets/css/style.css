@@ -1,5 +1,7 @@
-.nav-wrapper{
-    padding-left: 20px;
+
+.nav-wrapper {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
 #search-results{
@@ -12,19 +14,27 @@
     padding-left: 20px;
   }
 
-#navbar{
-    height:8vh;
+  #navbar{
+    height:70px;
   }
 
 #footer{
     height:12vh;
   }
 
-::placeholder{
-    color: white;
-}
-
-.card {
-  margin: 20px;
-}
+  #search-inputs{
+    padding-top: 20px;
+    margin-left: 100px;
+  }
+  #btn-search{
+  margin-top: 20px;
+  margin-left: 20px;
+  }
+  #login-form{
+    width:400px;
+    padding-top: 20px;
+  }
+  #btn-signup{
+    float: right;
+  }
 
