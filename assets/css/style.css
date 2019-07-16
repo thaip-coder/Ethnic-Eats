@@ -1,25 +1,30 @@
-.nav-wrapper {
+.nav-wrapper{
     padding-left: 20px;
   }
 
-  #search-results{
+#search-results{
     height:30vh;
     padding-left: 20px;
   }
 
-  #selected-recipe{
+#selected-recipe{
     height:50vh;
     padding-left: 20px;
   }
 
-  #navbar{
+#navbar{
     height:8vh;
   }
 
-  #footer{
+#footer{
     height:12vh;
   }
 
-  ::placeholder{
+::placeholder{
     color: white;
-  }
+}
+
+.card {
+  margin: 20px;
+}
+
