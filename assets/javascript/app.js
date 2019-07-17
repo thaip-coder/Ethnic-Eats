@@ -185,8 +185,9 @@ $(document).ready(function(){
       url: queryURL,
       method: "GET"
     }).then(function (response) {
+
       for (var i = 0; i < 4; i++) {
-        
+
         var foodImage = response.hits[i].recipe.image;
         var foodDescription = response.hits[i].recipe.label;
         var foodURL = response.hits[i].recipe.url;
@@ -207,6 +208,7 @@ $(document).ready(function(){
         $(matURL).append(matImage);  
         $(matCard).append(matBody);
         $("#recipe-cards").prepend(matCard);
+        console.log(response);
       }; 
     }); 
   };
