@@ -167,19 +167,27 @@ $(document).ready(function(){
     });
   });
 
-  $("#btn-search").on("click", function(){
-    var ethnicity = $("#autocomplete-input").val()
-    var ingredient = $("#ingredient").val();
-    var userQuery = ingredient + "," + ethnicity;
-    var queryURL = "https://api.edamam.com/search?&app_id=ba32723a&app_key=90cd3ee1b4bfd97de855e1d17e377a6b&from=0&to=9&q=" + userQuery;
-    console.log(ethnicity);
-    console.log(ingredient);
+
+  
+  var from = 0;
+  var to = 4;
+
+  function ajaxCall() {
+
+        var ethnicity = $("#autocomplete-input").val()
+        var ingredient = $("#ingredient").val();
+        var userQuery = ingredient + "," + ethnicity;
+        var queryURL = "https://api.edamam.com/search?&app_id=ba32723a&app_key=90cd3ee1b4bfd97de855e1d17e377a6b&from=" + from + "&to=" + to + "&q=" + userQuery;
+        console.log(ethnicity);
+        console.log(ingredient);
 
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function (response) {
+
       for (var i = 0; i < 4; i++) {
+
         var foodImage = response.hits[i].recipe.image;
         var foodDescription = response.hits[i].recipe.label;
         var foodURL = response.hits[i].recipe.url;
@@ -200,8 +208,29 @@ $(document).ready(function(){
         $(matURL).append(matImage);  
         $(matCard).append(matBody);
         $("#recipe-cards").prepend(matCard);
+        console.log(response);
       }; 
     }); 
+  };
+
+  $("#btn-search").on("click", function(t){
+    t.preventDefault();
+    ajaxCall();
   }); 
+
+  $("#btn-more").on("click", function(t){
+    t.preventDefault();
+  
+    from+=4;
+    to+=4;
+
+    ajaxCall();
+
+  });
+
+  
+  
+  
+
      
 

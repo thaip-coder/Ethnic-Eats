@@ -42,3 +42,13 @@
     margin: 15px;
   }
 
+  .side {
+    float: left;
+  }
+
+  #btn-more {
+    margin-top: 14.5px;
+    margin-bottom: 9.84px;
+    margin-left: 15px;
+  }
+
