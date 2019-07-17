@@ -12,11 +12,12 @@
   };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+  var database = firebase.database();
   var user = firebase.auth().currentUser;
   var name, email, photoUrl, uid, emailVerified;
   var userId;
   var auth = firebase.auth();
+  //var database = firebase.database();
 
 //initialize modals for materialize
   $(document).ready(function(){
@@ -109,6 +110,7 @@ $(document).ready(function(){
           var logoutLink = $("<a id='logout-link' href='#''>Logout</a>");
           var email = firebaseUser.email;
           var userWelcome = $("<a id='userWelcome' href='#'></a>");
+          uid = firebaseUser.uid;
           $(userWelcome).text(email);
           $("#login-logout").empty();
           
@@ -191,14 +193,14 @@ $(document).ready(function(){
         var foodImage = response.hits[i].recipe.image;
         var foodDescription = response.hits[i].recipe.label;
         var foodURL = response.hits[i].recipe.url;
-        var matAdd = $("<a class='btn-floating halfway-fab waves-effect waves-light red'><i class='material-icons'>add</i></a>");
+        var matAdd = $("<a class='btn-floating halfway-fab waves-effect waves-light red'><i data-name='"+[i]+"'class='material-icons add-favorite'>star</i></a>");
         var matCard = $("<div class='card' style='height:275px; width:250px; float:left;'>");
         var matBody = $("<div class='card-content'>");
         var matText = $("<p>");
         var matImageDiv = $("<div class='card-image'>");
         var matImage = $("<img src='" + foodImage + "' style='height:150px; width:250px;'>");
         var matURL = $("<a href='" + foodURL + "' target='_blank'>");
-
+        console.log(response);
         $(matText).append(foodDescription);
         $(matBody).append(matText);
         $(matImage).append(foodImage);
@@ -210,6 +212,21 @@ $(document).ready(function(){
         $("#recipe-cards").prepend(matCard);
         console.log(response);
       }; 
+
+     $(document.body).on("click",".add-favorite", function(){
+          var name = $(this).data("name");
+          var newRecipe = {
+            recipe: response.hits[name].recipe.label,
+            link: response.hits[name].recipe.url,
+            img: response.hits[name].recipe.image
+          }
+          
+          console.log(newRecipe.recipe);
+          console.log(newRecipe.link);
+          console.log(newRecipe.img);
+          console.log(name);
+          database.ref('/users/' + uid).push(newRecipe);
+      });
     }); 
   };
 
