@@ -171,20 +171,22 @@ $(document).ready(function(){
       for (var i = 0; i < 4; i++) {
         var foodImage = response.hits[i].recipe.image;
         var foodDescription = response.hits[i].recipe.label;
-        var matAdd = $("<a class='btn-floating halfway-fab waves-effect waves-light red'><i class='material-icons'>add</i></a>")
-        var matCard = $("<div class='card' style='height:275px; width:250px; float:left;'>")
-        var matBody = $("<div class='card-content'>")
-        var matText = $("<p>")
-        var matImageDiv = $("<div class='card-image'>")
-        var matImage = $("<img src='" + foodImage + "' style='height:150px; width:250px;'>")
+        var foodURL = response.hits[i].recipe.url;
+        var matAdd = $("<a class='btn-floating halfway-fab waves-effect waves-light red'><i class='material-icons'>add</i></a>");
+        var matCard = $("<div class='card' style='height:275px; width:250px; float:left;'>");
+        var matBody = $("<div class='card-content'>");
+        var matText = $("<p>");
+        var matImageDiv = $("<div class='card-image'>");
+        var matImage = $("<img src='" + foodImage + "' style='height:150px; width:250px;'>");
+        var matURL = $("<a href='" + foodURL + "' target='_blank'>");
 
         $(matText).append(foodDescription);
         $(matBody).append(matText);
         $(matImage).append(foodImage);
-        $(matImageDiv).append(matImage);
+        $(matImageDiv).append(matURL);
         $(matImageDiv).append(matAdd);
         $(matCard).append(matImageDiv);
-      
+        $(matURL).append(matImage);  
         $(matCard).append(matBody);
         $("#recipe-cards").prepend(matCard);
       }; 
