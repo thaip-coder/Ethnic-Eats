@@ -33,7 +33,7 @@ $(document).ready(function(){
   $("#login-form").hide();
   $("#search-inputs").hide();
   $("#btn-logout").hide();
-  $("#login-message-center").hide();
+  
 
   //toggle login form
   $(document.body).on("click","#login-link", function(){
@@ -74,9 +74,15 @@ $(document).ready(function(){
       console.log(email);
       console.log(pass);
 
-      var promise = auth.signInWithEmailAndPassword(email, pass);
-      promise.catch(e=> console.log(e.message));
+      auth.signInWithEmailAndPassword(email, pass)
+      .then(function(){
+          M.toast({html: 'Welcome to Ethnic Eats, you are now logged in'});
+      })
+      .catch( e => M.toast({
+        html: e.message + " Please try again."
+      }));
   });
+
 //user signUp
   $("#btn-signup").on("click", function(){
     $("#login-form").hide();
@@ -86,9 +92,13 @@ $(document).ready(function(){
 
       console.log(email);
       console.log(pass);
-
-      var promise = auth.createUserWithEmailAndPassword(email, pass);
-      promise.catch(e=> console.log(e.message));
+      auth.createUserWithEmailAndPassword(email, pass)
+      .then(function(){
+        M.toast({html: 'Welcome to Ethnic Eats<br>You have successfully created an account! <br> Since we like you so much, <br> we have already logged you in!'});
+    })
+    .catch( e => M.toast({
+      html: e.message + " Please try again."
+    }));
   });
 
   auth.onAuthStateChanged(firebaseUser => {
@@ -103,10 +113,11 @@ $(document).ready(function(){
           $("#login-logout").empty();
           
           
-         // $("#login-logout").prepend("Welcome " + email);
+        
           $("#login-logout").prepend(logoutLink);
           $(document.body).on("click", "#logout-link",  function(){
             firebase.auth().signOut();
+            M.toast({html: 'You have been successfully logged out.'});
           });
 
 
