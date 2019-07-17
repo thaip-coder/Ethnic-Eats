@@ -192,11 +192,11 @@ $(document).ready(function(){
         var foodDescription = response.hits[i].recipe.label;
         var foodURL = response.hits[i].recipe.url;
         var matAdd = $("<a class='btn-floating halfway-fab waves-effect waves-light red'><i class='material-icons'>add</i></a>");
-        var matCard = $("<div class='card' style='height:275px; width:250px; float:left;'>");
+        var matCard = $("<div class='card' style='height:280px; width:250px; float:left;'>");
         var matBody = $("<div class='card-content'>");
         var matText = $("<p>");
         var matImageDiv = $("<div class='card-image'>");
-        var matImage = $("<img src='" + foodImage + "' style='height:150px; width:250px;'>");
+        var matImage = $("<img src='" + foodImage + "' style='height:170px; width:250px;'>");
         var matURL = $("<a href='" + foodURL + "' target='_blank'>");
 
         $(matText).append(foodDescription);
@@ -216,6 +216,8 @@ $(document).ready(function(){
   $("#btn-search").on("click", function(t){
     t.preventDefault();
     ajaxCall();
+    $("#search-inputs").hide();
+    $("#search-inputs").addClass("inactive");
   }); 
 
   $("#btn-more").on("click", function(t){
