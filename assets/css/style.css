@@ -1,14 +1,15 @@
+
 .nav-wrapper {
     padding-left: 40px;
     padding-right: 40px;
   }
 
-  #search-results{
+#search-results{
     height:30vh;
     padding-left: 20px;
   }
 
-  #selected-recipe{
+#selected-recipe{
     height:50vh;
     padding-left: 20px;
   }
@@ -17,9 +18,10 @@
     height:70px;
   }
 
-  #footer{
+#footer{
     height:12vh;
   }
+
   #search-inputs{
     padding-top: 20px;
     margin-left: 100px;
@@ -35,3 +37,8 @@
   #btn-signup{
     float: right;
   }
+
+  .card {
+    margin: 15px;
+  }
+

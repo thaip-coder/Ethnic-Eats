@@ -11,7 +11,7 @@
     appId: "1:256978426670:web:37329348150d7a63"
   };
 // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
   var user = firebase.auth().currentUser;
   var name, email, photoUrl, uid, emailVerified;
@@ -40,8 +40,10 @@ $(document).ready(function(){
     if($("#login-form").hasClass("inactive")){
       $("#login-form").show();
       $("#login-form").addClass("active");
-      $("#login-form").removeClass("inactive")
+      $("#login-form").removeClass("inactive");
       $("#search-inputs").hide();
+      $("#search-inputs").removeClass("active");
+      $("#search-inputs").addClass("inactive");
     } else if ($("#login-form").hasClass("active")) {
       $("#login-form").hide();
       $("#login-form").removeClass("active");
@@ -53,8 +55,10 @@ $(document).ready(function(){
     if($("#search-inputs").hasClass("inactive")){
       $("#search-inputs").show();
       $("#search-inputs").addClass("active");
-      $("#search-inputs").removeClass("inactive")
+      $("#search-inputs").removeClass("inactive");
       $("#login-form").hide();
+      $("#login-form").removeClass("active");
+      $("#login-form").addClass("inactive");
     } else if ($("#search-inputs").hasClass("active")) {
       $("#search-inputs").hide();
       $("#search-inputs").removeClass("active");
@@ -159,9 +163,43 @@ $(document).ready(function(){
         "Italian":null,
         "Zambian":null,
         "Turkish":null,
-
       },
     });
   });
+
+  $("#btn-search").on("click", function(){
+    var ethnicity = $("#autocomplete-input").val()
+    var ingredient = $("#ingredient").val();
+    var userQuery = ingredient + "," + ethnicity;
+    var queryURL = "https://api.edamam.com/search?&app_id=ba32723a&app_key=90cd3ee1b4bfd97de855e1d17e377a6b&from=0&to=9&q=" + userQuery;
+    console.log(ethnicity);
+    console.log(ingredient);
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function (response) {
+      for (var i = 0; i < 4; i++) {
+        var foodImage = response.hits[i].recipe.image;
+        var foodDescription = response.hits[i].recipe.label;
+        var matAdd = $("<a class='btn-floating halfway-fab waves-effect waves-light red'><i class='material-icons'>add</i></a>")
+        var matCard = $("<div class='card' style='height:275px; width:250px; float:left;'>")
+        var matBody = $("<div class='card-content'>")
+        var matText = $("<p>")
+        var matImageDiv = $("<div class='card-image'>")
+        var matImage = $("<img src='" + foodImage + "' style='height:150px; width:250px;'>")
+
+        $(matText).append(foodDescription);
+        $(matBody).append(matText);
+        $(matImage).append(foodImage);
+        $(matImageDiv).append(matImage);
+        $(matImageDiv).append(matAdd);
+        $(matCard).append(matImageDiv);
+      
+        $(matCard).append(matBody);
+        $("#recipe-cards").prepend(matCard);
+      }; 
+    }); 
+  }); 
      
 
