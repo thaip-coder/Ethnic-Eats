@@ -1,4 +1,6 @@
-
+// Variables for results rendered
+var from = 0;
+var to = 4;
 
 // Firebase configuration
   var firebaseConfig = {
@@ -59,6 +61,12 @@ $(document).ready(function(){
       $("#login-form").hide();
       $("#login-form").removeClass("active");
       $("#login-form").addClass("inactive");
+
+      $("#btn-search").removeClass("initiated");
+      from = 0;
+      to = 4;
+      $("#autocomplete-input").val('');
+      $("#ingredient").val('');
     } else if ($("#search-inputs").hasClass("active")) {
       $("#search-inputs").hide();
       $("#search-inputs").removeClass("active");
@@ -167,11 +175,6 @@ $(document).ready(function(){
     });
   });
 
-
-  
-  var from = 0;
-  var to = 4;
-
   function ajaxCall() {
 
         var ethnicity = $("#autocomplete-input").val()
@@ -216,17 +219,18 @@ $(document).ready(function(){
   $("#btn-search").on("click", function(t){
     t.preventDefault();
     ajaxCall();
+    $("#btn-search").addClass("initiated");
     $("#search-inputs").hide();
     $("#search-inputs").addClass("inactive");
   }); 
 
   $("#btn-more").on("click", function(t){
+    if ($("#btn-search").hasClass("initiated")) {
     t.preventDefault();
-  
     from+=4;
     to+=4;
-
     ajaxCall();
+  };
 
   });
 
