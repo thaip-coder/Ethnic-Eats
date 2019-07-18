@@ -25,6 +25,7 @@ firebase.initializeApp(firebaseConfig);
   $(document).ready(function(){
     $('.modal').modal();
   });
+  
 
 
 M.AutoInit();
@@ -122,6 +123,44 @@ $(document).ready(function(){
           $(userWelcome).text(email);
           $("#login-logout").empty();
           
+          if(firebaseUser != null){
+            uid = firebaseUser.uid;
+            database.ref('/users/'+ uid).on("child_added", function(childSnapshot) {
+  
+              // Log everything that's coming out of childSnapshot
+                console.log(childSnapshot.val().recipe);
+                console.log(childSnapshot.val().link);
+                console.log(childSnapshot.val().img);
+          
+                var link = childSnapshot.val().link;
+                var recipe = childSnapshot.val().recipe;
+                var image = childSnapshot.val().img;
+                var key = childSnapshot.key;
+          
+                var matAdd = $("<a class='btn-floating halfway-fab waves-effect waves-light red'><i data-key='"+key+"'class='material-icons delete'>delete</i></a>");
+                var matCard = $("<div class='card' style='height:275px; width:250px; float:left;'>");
+                var matBody = $("<div class='card-content'>");
+                var matText = $("<p>");
+                var matImageDiv = $("<div class='card-image'>");
+                var matImage = $("<img src='" + image + "' style='height:150px; width:250px;'>");
+                var matURL = $("<a href='" + link + "' target='_blank'>");
+                //console.log(response);
+                $(matText).append(recipe);
+                $(matBody).append(matText);
+                $(matImage).append(image);
+                $(matImageDiv).append(matURL);
+                $(matImageDiv).append(matAdd);
+                $(matCard).append(matImageDiv);
+                $(matURL).append(matImage);  
+                $(matCard).append(matBody);
+                $("#favorites").append(matCard);
+          
+              
+            }, function(errorObject) {
+                console.log("Errors handled: " + errorObject.code);
+            });
+          }
+          
           
         
           $("#login-logout").prepend(logoutLink);
@@ -167,7 +206,7 @@ $(document).ready(function(){
         "Korean":null,
         "Venezuelan":null,
         "Indian":null,
-        "Agentinian":null,
+        "Argentinian":null,
         "Thai":null,
         "Japanese":null,
         "Italian":null,
@@ -196,8 +235,7 @@ $(document).ready(function(){
         var foodImage = response.hits[i].recipe.image;
         var foodDescription = response.hits[i].recipe.label;
         var foodURL = response.hits[i].recipe.url;
-
-        var matAdd = $("<a class='btn-floating halfway-fab waves-effect waves-light red'><i data-name='"+[i]+"'class='material-icons add-favorite'>star</i></a>");
+        var matAdd = $("<a class='btn-floating halfway-fab waves-effect waves-light red'><i data-name='"+[i]+"'class='material-icons add-favorite'>star_border</i></a>");
         var matCard = $("<div class='card' style='height:275px; width:250px; float:left;'>");
         var matBody = $("<div class='card-content'>");
         var matText = $("<p>");
@@ -218,6 +256,7 @@ $(document).ready(function(){
       }; 
 
      $(document.body).on("click",".add-favorite", function(){
+      
           var name = $(this).data("name");
           var newRecipe = {
             recipe: response.hits[name].recipe.label,
@@ -225,10 +264,10 @@ $(document).ready(function(){
             img: response.hits[name].recipe.image
           }
           
-          console.log(newRecipe.recipe);
-          console.log(newRecipe.link);
-          console.log(newRecipe.img);
-          console.log(name);
+         // console.log(newRecipe.recipe);
+          //console.log(newRecipe.link);
+          //console.log(newRecipe.img);
+          //console.log(name);
           database.ref('/users/' + uid).push(newRecipe);
       });
     }); 
@@ -263,3 +302,6 @@ $(document).ready(function(){
 
      
 
+  //add to favorites
+
+  
