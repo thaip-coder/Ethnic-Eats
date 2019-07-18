@@ -222,7 +222,11 @@ $(document).ready(function(){
     $("#btn-search").addClass("initiated");
     $("#search-inputs").hide();
     $("#search-inputs").addClass("inactive");
-  }); 
+
+    $('html, body').animate({
+      scrollTop: $("#search-results").offset().top
+      }, 600);
+      }); 
 
   $("#btn-more").on("click", function(t){
     if ($("#btn-search").hasClass("initiated")) {
