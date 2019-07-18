@@ -52,6 +52,6 @@
     margin-left: 15px;
   }
 
-  #sticky {
-    position: sticky;
-  }
+ .btn-floating:hover {
+    border: inset 1px;
+ }
