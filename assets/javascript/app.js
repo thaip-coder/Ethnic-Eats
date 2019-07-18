@@ -1,4 +1,6 @@
-
+// Variables for results rendered
+var from = 0;
+var to = 4;
 
 // Firebase configuration
   var firebaseConfig = {
@@ -60,6 +62,12 @@ $(document).ready(function(){
       $("#login-form").hide();
       $("#login-form").removeClass("active");
       $("#login-form").addClass("inactive");
+
+      $("#btn-search").removeClass("initiated");
+      from = 0;
+      to = 4;
+      $("#autocomplete-input").val('');
+      $("#ingredient").val('');
     } else if ($("#search-inputs").hasClass("active")) {
       $("#search-inputs").hide();
       $("#search-inputs").removeClass("active");
@@ -169,11 +177,6 @@ $(document).ready(function(){
     });
   });
 
-
-  
-  var from = 0;
-  var to = 4;
-
   function ajaxCall() {
 
         var ethnicity = $("#autocomplete-input").val()
@@ -193,12 +196,13 @@ $(document).ready(function(){
         var foodImage = response.hits[i].recipe.image;
         var foodDescription = response.hits[i].recipe.label;
         var foodURL = response.hits[i].recipe.url;
+
         var matAdd = $("<a class='btn-floating halfway-fab waves-effect waves-light red'><i data-name='"+[i]+"'class='material-icons add-favorite'>star</i></a>");
         var matCard = $("<div class='card' style='height:275px; width:250px; float:left;'>");
         var matBody = $("<div class='card-content'>");
         var matText = $("<p>");
         var matImageDiv = $("<div class='card-image'>");
-        var matImage = $("<img src='" + foodImage + "' style='height:150px; width:250px;'>");
+        var matImage = $("<img src='" + foodImage + "' style='height:170px; width:250px;'>");
         var matURL = $("<a href='" + foodURL + "' target='_blank'>");
         console.log(response);
         $(matText).append(foodDescription);
@@ -233,15 +237,18 @@ $(document).ready(function(){
   $("#btn-search").on("click", function(t){
     t.preventDefault();
     ajaxCall();
+    $("#btn-search").addClass("initiated");
+    $("#search-inputs").hide();
+    $("#search-inputs").addClass("inactive");
   }); 
 
   $("#btn-more").on("click", function(t){
+    if ($("#btn-search").hasClass("initiated")) {
     t.preventDefault();
-  
     from+=4;
     to+=4;
-
     ajaxCall();
+  };
 
   });
 
