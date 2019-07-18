@@ -1,4 +1,6 @@
-
+// Variables for results rendered
+var from = 0;
+var to = 4;
 
 // Firebase configuration
   var firebaseConfig = {
@@ -61,6 +63,12 @@ $(document).ready(function(){
       $("#login-form").hide();
       $("#login-form").removeClass("active");
       $("#login-form").addClass("inactive");
+
+      $("#btn-search").removeClass("initiated");
+      from = 0;
+      to = 4;
+      $("#autocomplete-input").val('');
+      $("#ingredient").val('');
     } else if ($("#search-inputs").hasClass("active")) {
       $("#search-inputs").hide();
       $("#search-inputs").removeClass("active");
@@ -208,19 +216,22 @@ $(document).ready(function(){
     });
   });
 
-  $("#btn-search").on("click", function(){
-    var ethnicity = $("#autocomplete-input").val()
-    var ingredient = $("#ingredient").val();
-    var userQuery = ingredient + "," + ethnicity;
-    var queryURL = "https://api.edamam.com/search?&app_id=ba32723a&app_key=90cd3ee1b4bfd97de855e1d17e377a6b&from=0&to=9&q=" + userQuery;
-    console.log(ethnicity);
-    console.log(ingredient);
+  function ajaxCall() {
+
+        var ethnicity = $("#autocomplete-input").val()
+        var ingredient = $("#ingredient").val();
+        var userQuery = ingredient + "," + ethnicity;
+        var queryURL = "https://api.edamam.com/search?&app_id=ba32723a&app_key=90cd3ee1b4bfd97de855e1d17e377a6b&from=" + from + "&to=" + to + "&q=" + userQuery;
+        console.log(ethnicity);
+        console.log(ingredient);
 
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function (response) {
+
       for (var i = 0; i < 4; i++) {
+
         var foodImage = response.hits[i].recipe.image;
         var foodDescription = response.hits[i].recipe.label;
         var foodURL = response.hits[i].recipe.url;
@@ -229,7 +240,7 @@ $(document).ready(function(){
         var matBody = $("<div class='card-content'>");
         var matText = $("<p>");
         var matImageDiv = $("<div class='card-image'>");
-        var matImage = $("<img src='" + foodImage + "' style='height:150px; width:250px;'>");
+        var matImage = $("<img src='" + foodImage + "' style='height:170px; width:250px;'>");
         var matURL = $("<a href='" + foodURL + "' target='_blank'>");
         console.log(response);
         $(matText).append(foodDescription);
@@ -241,6 +252,7 @@ $(document).ready(function(){
         $(matURL).append(matImage);  
         $(matCard).append(matBody);
         $("#recipe-cards").prepend(matCard);
+        console.log(response);
       }; 
 
      $(document.body).on("click",".add-favorite", function(){
@@ -259,7 +271,35 @@ $(document).ready(function(){
           database.ref('/users/' + uid).push(newRecipe);
       });
     }); 
-  }); 
+  };
+
+  $("#btn-search").on("click", function(t){
+    t.preventDefault();
+    ajaxCall();
+    $("#btn-search").addClass("initiated");
+    $("#search-inputs").hide();
+    $("#search-inputs").addClass("inactive");
+
+    $('html, body').animate({
+    scrollTop: $("#search-results").offset().top
+    }, 600);
+    }); 
+
+  $("#btn-more").on("click", function(t){
+    if ($("#btn-search").hasClass("initiated")) {
+    t.preventDefault();
+    from+=4;
+    to+=4;
+    ajaxCall();
+  };
+
+  
+  });
+
+  
+  
+  
+
      
 
   //add to favorites
