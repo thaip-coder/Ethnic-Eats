@@ -53,3 +53,6 @@
  
 
 
+ .btn-floating:hover {
+    border: inset 1px;
+ }
