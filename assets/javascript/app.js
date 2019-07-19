@@ -268,21 +268,6 @@ $(document).ready(function(){
         counter++;
       }; 
 
-     $(document.body).on("click",".add-favorite", function(){
-      
-          var name = $(this).data("name");
-          var newRecipe = {
-            recipe: response.hits[name].recipe.label,
-            link: response.hits[name].recipe.url,
-            img: response.hits[name].recipe.image
-          };
-          
-         // console.log(newRecipe.recipe);
-          //console.log(newRecipe.link);
-          //console.log(newRecipe.img);
-          //console.log(name);
-          database.ref('/users/' + uid).push(newRecipe);
-      });
     }); 
   };
 
@@ -292,6 +277,22 @@ $(document).ready(function(){
     this.link = foodURL;
     this.counter = counter;
   };
+
+  $(document.body).on("click",".add-favorite", function(){
+      
+    var name = $(this).data("recipe");
+    var newRecipe = {
+      recipe: favoritesArray[name].recipe,
+      link: favoritesArray[name].link,
+      img: favoritesArray[name].img
+    };
+    
+   // console.log(newRecipe.recipe);
+    //console.log(newRecipe.link);
+    //console.log(newRecipe.img);
+    //console.log(name);
+    database.ref('/users/' + uid).push(newRecipe);
+});
 
   $(document).ready(function() {
 
