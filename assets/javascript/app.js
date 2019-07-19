@@ -6,6 +6,7 @@ var foodDescription = "";
 var foodURL = "";
 var favoritesArray = [];
 var counter = 0;
+var toast = "This has been added to your favorites";
 
 // Firebase configuration
   var firebaseConfig = {
@@ -298,7 +299,7 @@ $(document).ready(function(){
   };
 
   $(document.body).on("click",".add-favorite", function(){
-      
+    M.toast({html: toast});
     var name = $(this).data("recipe");
     var newRecipe = {
       recipe: favoritesArray[name].recipe,
