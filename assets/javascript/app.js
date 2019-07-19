@@ -1,6 +1,11 @@
 // Variables for results rendered
 var from = 0;
 var to = 4;
+var foodImage = "";
+var foodDescription = "";
+var foodURL = "";
+var favoritesArray = [];
+var counter = 0;
 
 // Firebase configuration
   var firebaseConfig = {
@@ -66,6 +71,9 @@ $(document).ready(function(){
       $("#btn-search").removeClass("initiated");
       from = 0;
       to = 4;
+      counter = 0;
+      favoritesArray = [];
+      $("#recipe-cards").empty();
       $("#autocomplete-input").val('');
       $("#ingredient").val('');
     } else if ($("#search-inputs").hasClass("active")) {
@@ -193,17 +201,19 @@ $(document).ready(function(){
 
       for (var i = 0; i < 4; i++) {
 
-        var foodImage = response.hits[i].recipe.image;
-        var foodDescription = response.hits[i].recipe.label;
-        var foodURL = response.hits[i].recipe.url;
+        foodImage = response.hits[i].recipe.image;
+        foodDescription = response.hits[i].recipe.label;
+        foodURL = response.hits[i].recipe.url;
 
-        var matAdd = $("<a class='btn-floating halfway-fab waves-effect waves-light red'><i data-name='"+[i]+"'class='material-icons add-favorite'>star</i></a>");
+        var matAdd = $("<a class='btn-floating halfway-fab waves-effect waves-light red'><i data-recipe='"+counter+"' data-name='"+[i]+"'class='material-icons add-favorite'>star</i></a>");
         var matCard = $("<div class='card' style='height:275px; width:250px; float:left;'>");
         var matBody = $("<div class='card-content'>");
         var matText = $("<p>");
         var matImageDiv = $("<div class='card-image'>");
         var matImage = $("<img src='" + foodImage + "' style='height:170px; width:250px;'>");
         var matURL = $("<a href='" + foodURL + "' target='_blank'>");
+        var faves = new addFavorites(foodImage, foodDescription, foodURL, counter);
+        favoritesArray.push(faves);
         console.log(response);
         $(matText).append(foodDescription);
         $(matBody).append(matText);
@@ -215,6 +225,8 @@ $(document).ready(function(){
         $(matCard).append(matBody);
         $("#recipe-cards").prepend(matCard);
         console.log(response);
+
+        counter++;
       }; 
 
      $(document.body).on("click",".add-favorite", function(){
@@ -223,7 +235,7 @@ $(document).ready(function(){
             recipe: response.hits[name].recipe.label,
             link: response.hits[name].recipe.url,
             img: response.hits[name].recipe.image
-          }
+          };
           
           console.log(newRecipe.recipe);
           console.log(newRecipe.link);
@@ -233,6 +245,15 @@ $(document).ready(function(){
       });
     }); 
   };
+
+  function addFavorites (foodImage, foodDescription, foodURL, counter) {
+    this.img = foodImage;
+    this.recipe = foodDescription;
+    this.link = foodURL;
+    this.counter = counter;
+  };
+
+  $(document).ready(function() {
 
   $("#btn-search").on("click", function(t){
     t.preventDefault();
@@ -253,9 +274,8 @@ $(document).ready(function(){
     to+=4;
     ajaxCall();
   };
-
-  
   });
+});
 
   
   
