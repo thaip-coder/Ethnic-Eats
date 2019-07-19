@@ -6,6 +6,7 @@ var foodDescription = "";
 var foodURL = "";
 var favoritesArray = [];
 var counter = 0;
+var toast = "This has been added to your favorites";
 
 // Firebase configuration
   var firebaseConfig = {
@@ -323,7 +324,7 @@ $(document).ready(function(){
         foodURL = response.hits[i].recipe.url;
 
         var matAdd = $("<a class='btn-floating halfway-fab waves-effect waves-light red'><i data-recipe='"+counter+"' data-name='"+[i]+"'class='material-icons add-favorite'>star</i></a>");
-        var matCard = $("<div class='card' style='height:275px; width:250px; float:left;'>");
+        var matCard = $("<div class='card' style='height:285px; width:250px; float:left;'>");
         var matBody = $("<div class='card-content'>");
         var matText = $("<p>");
         var matImageDiv = $("<div class='card-image'>");
@@ -357,7 +358,7 @@ $(document).ready(function(){
   };
 
   $(document.body).on("click",".add-favorite", function(){
-      
+    M.toast({html: toast});
     var name = $(this).data("recipe");
     var newRecipe = {
       recipe: favoritesArray[name].recipe,
