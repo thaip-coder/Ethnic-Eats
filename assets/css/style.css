@@ -4,23 +4,12 @@
     padding-right: 40px;
   }
 
-#search-results{
-    height:30vh;
-    padding-left: 20px;
-  }
-
-#selected-recipe{
-    height:50vh;
-    padding-left: 20px;
-  }
 
   #navbar{
     height:70px;
   }
 
-#footer{
-    height:12vh;
-  }
+
 
   #search-inputs{
     padding-top: 20px;
