@@ -42,7 +42,8 @@ $(document).ready(function(){
   $("#login-form").hide();
   $("#search-inputs").hide();
   $("#btn-logout").hide();
-  
+  $("#search-results").hide();
+  $("#favorites").hide();
 
   //toggle login form
   $(document.body).on("click","#login-link", function(){
@@ -81,6 +82,24 @@ $(document).ready(function(){
       $("#search-inputs").hide();
       $("#search-inputs").removeClass("active");
       $("#search-inputs").addClass("inactive");
+    };
+  });
+  //Favorites
+  $("#faves").on("click", function() {
+
+    if ($("#faves").hasClass("inactive")) {
+      $("#favorites").show();
+      $("#faves").addClass("active");
+      $("#faves").removeClass("inactive");
+
+      $('html, body').animate({
+        scrollTop: $("#favorites").offset().top
+        }, 600);
+
+    } else if ($("#faves").hasClass("active")) {
+      $("#favorites").hide();
+      $("#faves").addClass("inactive");
+      $("#faves").removeClass("active")
     };
   });
   //user login
@@ -298,13 +317,14 @@ $(document).ready(function(){
 
   $("#btn-search").on("click", function(t){
     t.preventDefault();
+    $("#search-results").show();
     ajaxCall();
     $("#btn-search").addClass("initiated");
     $("#search-inputs").hide();
     $("#search-inputs").addClass("inactive");
 
     $('html, body').animate({
-    scrollTop: $("#search-results").offset().top
+    scrollTop: $("#recipe-cards").offset().top
     }, 600);
     }); 
 
