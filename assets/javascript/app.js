@@ -60,6 +60,23 @@ $(document).ready(function(){
       $("#login-form").addClass("inactive");
     };
   });
+
+  //toggle login side-nav
+  
+  $(document.body).on("click","#side-nav-login", function(){
+    if($("#login-form").hasClass("inactive")){
+      $("#login-form").show();
+      $("#login-form").addClass("active");
+      $("#login-form").removeClass("inactive");
+      $("#search-inputs").hide();
+      $("#search-inputs").removeClass("active");
+      $("#search-inputs").addClass("inactive");
+    } else if ($("#login-form").hasClass("active")) {
+      $("#login-form").hide();
+      $("#login-form").removeClass("active");
+      $("#login-form").addClass("inactive");
+    };
+  });
 //toggle search form
   $("#nav-search").on("click", function(){
     if($("#search-inputs").hasClass("inactive")){
@@ -84,8 +101,50 @@ $(document).ready(function(){
       $("#search-inputs").addClass("inactive");
     };
   });
+  //toggle search form from side nav
+  $("#side-nav-search").on("click", function(){
+    if($("#search-inputs").hasClass("inactive")){
+      $("#search-inputs").show();
+      $("#search-inputs").addClass("active");
+      $("#search-inputs").removeClass("inactive");
+      $("#login-form").hide();
+      $("#login-form").removeClass("active");
+      $("#login-form").addClass("inactive");
+
+      $("#btn-search").removeClass("initiated");
+      from = 0;
+      to = 4;
+      counter = 0;
+      favoritesArray = [];
+      $("#recipe-cards").empty();
+      $("#autocomplete-input").val('');
+      $("#ingredient").val('');
+    } else if ($("#search-inputs").hasClass("active")) {
+      $("#search-inputs").hide();
+      $("#search-inputs").removeClass("active");
+      $("#search-inputs").addClass("inactive");
+    };
+  });
   //Favorites
   $("#faves").on("click", function() {
+
+    if ($("#faves").hasClass("inactive")) {
+      $("#favorites").show();
+      $("#faves").addClass("active");
+      $("#faves").removeClass("inactive");
+
+      $('html, body').animate({
+        scrollTop: $("#favorites").offset().top
+        }, 600);
+
+    } else if ($("#faves").hasClass("active")) {
+      $("#favorites").hide();
+      $("#faves").addClass("inactive");
+      $("#faves").removeClass("active")
+    };
+  });
+  //Favorites from side nav
+  $("#side-nav-favorites").on("click", function() {
 
     if ($("#faves").hasClass("inactive")) {
       $("#favorites").show();
@@ -137,7 +196,7 @@ $(document).ready(function(){
       html: e.message + " Please try again."
     }));
   });
-
+//user login state
   auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser)
         {
