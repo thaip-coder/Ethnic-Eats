@@ -1,6 +1,6 @@
 function randomFact() {
     var xmlhttp = new XMLHttpRequest();
-    var url = "https://api.chucknorris.io/jokes/random";
+    var url = "https://api.chucknorris.io/jokes/random?category=food";
     xmlhttp.onreadystatechange = function() {
       if(this.readyState == 4 && this.status == 200) {
         var json = JSON.parse(this.responseText);
