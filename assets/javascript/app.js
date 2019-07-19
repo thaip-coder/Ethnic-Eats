@@ -265,7 +265,7 @@ $(document).ready(function(){
         foodURL = response.hits[i].recipe.url;
 
         var matAdd = $("<a class='btn-floating halfway-fab waves-effect waves-light red'><i data-recipe='"+counter+"' data-name='"+[i]+"'class='material-icons add-favorite'>star</i></a>");
-        var matCard = $("<div class='card' style='height:275px; width:250px; float:left;'>");
+        var matCard = $("<div class='card' style='height:285px; width:250px; float:left;'>");
         var matBody = $("<div class='card-content'>");
         var matText = $("<p>");
         var matImageDiv = $("<div class='card-image'>");

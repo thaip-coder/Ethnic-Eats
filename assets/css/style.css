@@ -28,11 +28,16 @@
   }
 
   .card {
-    margin: 15px;
+    margin: 20px;
   }
 
   .side {
     float: left;
+    margin-left: 20px;
+  }
+
+  #ml {
+    margin-left: 20px;
   }
 
   #btn-more {
