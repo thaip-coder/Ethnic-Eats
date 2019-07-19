@@ -85,15 +85,21 @@ $(document).ready(function(){
     };
   });
   //Favorites
-  $("#favorites").on("click", function() {
-    if ($("#favorites").hasClass("inactive")) {
+  $("#faves").on("click", function() {
+
+    if ($("#faves").hasClass("inactive")) {
       $("#favorites").show();
-      $("#favorites").addClass("active");
-      $("#favorites").removeClass("inactive");
-    } else if ($("#favorites").hasClass("active")) {
+      $("#faves").addClass("active");
+      $("#faves").removeClass("inactive");
+
+      $('html, body').animate({
+        scrollTop: $("#favorites").offset().top
+        }, 600);
+
+    } else if ($("#faves").hasClass("active")) {
       $("#favorites").hide();
-      $("#favorites").addClass("inactive");
-      $("#favorites").removeClass("active")
+      $("#faves").addClass("inactive");
+      $("#faves").removeClass("active")
     };
   });
   //user login
