@@ -42,7 +42,8 @@ $(document).ready(function(){
   $("#login-form").hide();
   $("#search-inputs").hide();
   $("#btn-logout").hide();
-  
+  $("#search-results").hide();
+  $("#favorites").hide();
 
   //toggle login form
   $(document.body).on("click","#login-link", function(){
@@ -81,6 +82,18 @@ $(document).ready(function(){
       $("#search-inputs").hide();
       $("#search-inputs").removeClass("active");
       $("#search-inputs").addClass("inactive");
+    };
+  });
+  //Favorites
+  $("#favorites").on("click", function() {
+    if ($("#favorites").hasClass("inactive")) {
+      $("#favorites").show();
+      $("#favorites").addClass("active");
+      $("#favorites").removeClass("inactive");
+    } else if ($("#favorites").hasClass("active")) {
+      $("#favorites").hide();
+      $("#favorites").addClass("inactive");
+      $("#favorites").removeClass("active")
     };
   });
   //user login
@@ -298,13 +311,14 @@ $(document).ready(function(){
 
   $("#btn-search").on("click", function(t){
     t.preventDefault();
+    $("#search-results").show();
     ajaxCall();
     $("#btn-search").addClass("initiated");
     $("#search-inputs").hide();
     $("#search-inputs").addClass("inactive");
 
     $('html, body').animate({
-    scrollTop: $("#search-results").offset().top
+    scrollTop: $("#recipe-cards").offset().top
     }, 600);
     }); 
 
