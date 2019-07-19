@@ -6,6 +6,7 @@ var foodDescription = "";
 var foodURL = "";
 var favoritesArray = [];
 var counter = 0;
+var toast = "This has been added to your favorites";
 
 // Firebase configuration
 var firebaseConfig = {
@@ -192,6 +193,7 @@ $("#btn-signup").on("click", function () {
     }));
 });
 //user login state
+
 auth.onAuthStateChanged(firebaseUser => {
   if (firebaseUser) {
     $("#displayName-input").hide();
@@ -264,6 +266,21 @@ auth.onAuthStateChanged(firebaseUser => {
     $("#login-logout").html(loginLink);
     //console.log("not logged in")
   }
+  $(document.body).on("click",".add-favorite", function(){
+    M.toast({html: toast});
+    var name = $(this).data("recipe");
+    var newRecipe = {
+      recipe: favoritesArray[name].recipe,
+      link: favoritesArray[name].link,
+      img: favoritesArray[name].img
+    };
+    
+   // console.log(newRecipe.recipe);
+    //console.log(newRecipe.link);
+    //console.log(newRecipe.img);
+    //console.log(name);
+    database.ref('/users/' + uid).push(newRecipe);
+
 });
 
 //Auto-complete choices for ethnicity
