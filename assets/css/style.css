@@ -9,15 +9,12 @@
     height:70px;
   }
 
-
-
   #search-inputs{
     padding-top: 20px;
-    margin-left: 100px;
   }
+  
   #btn-search{
-  margin-top: 20px;
-  margin-left: 20px;
+  text-align: center;
   }
   #login-form{
     width:400px;
@@ -50,8 +47,6 @@
   }
 
   #chuckZone{
-    margin-left: 300px;
-    margin-right: 300px;
     margin-top: 20px;
     margin-bottom: 20px;
   }
@@ -61,3 +56,4 @@
  .btn-floating:hover {
     border: inset 1px;
  }
+ 
