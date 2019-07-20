@@ -203,6 +203,7 @@ $("#btn-signup").on("click", function () {
 auth.onAuthStateChanged(firebaseUser => {
   if (firebaseUser) {
     $("#displayName-input").hide();
+    $("#faves").show();
     //console.log(firebaseUser)
     var logoutLink = $("<a id='logout-link' href='#''>Logout</a>");
     var email = firebaseUser.email;
