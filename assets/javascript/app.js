@@ -256,6 +256,7 @@ auth.onAuthStateChanged(firebaseUser => {
       firebase.auth().signOut();
       $("#search-results").hide();
       $("#favorites").hide();
+      $("#faves").hide();
       M.toast({ html: 'You have been successfully logged out.' });
     });
 
