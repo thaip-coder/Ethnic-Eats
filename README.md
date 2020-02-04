@@ -36,6 +36,5 @@
     - Firebase
     - Materlialize
    
-
 7. I developed this javascript game for an assigment for my coding bootcamp.
 
