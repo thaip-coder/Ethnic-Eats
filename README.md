@@ -36,5 +36,5 @@
     - Firebase
     - Materlialize
    
-7. I developed this javascript game for an assigment for my coding bootcamp.
+7. I developed this website with 2 fellow classmates as our group project.
 
