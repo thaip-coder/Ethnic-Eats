@@ -1,4 +1,4 @@
-# Project_1
+# Ethnic Eats
 1. The problem our app is trying to solve:
     - The problem our app is trying to solve is providing users with recipes based on 2 criteria: ethnicity and ingredient. Recipes can also be added to user favorites!
     - Clicking on the recipes will open an external link to the recipes website where the cooking directions are located.
